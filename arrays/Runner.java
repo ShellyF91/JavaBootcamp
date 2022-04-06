@@ -192,41 +192,84 @@ public class Runner {
 		
 	// question 11
 		
-		
-		
-	// question 15
-		
-		int matSize;
-		// gets input
-		System.out.println("Please enter the size of the square matrix");
-		matSize = scanner.nextInt();
-		int [][] mat = new int[matSize][matSize];
-		for(int i = 0; i < matSize; i++) {
+		int [][] mat = new int [10][10]; 
+		// input for matrix size
+		System.out.println("please enter a number from 1 to 10");
+		int rows = scanner.nextInt();
+		System.out.println("please enter a number from 1 to 10");
+		int columns = scanner.nextInt();
+		// input for matrix values
+		for(int i = 0; i < rows; i++) {
 			System.out.println("Row number " + i + " :");
-			System.out.println("Please enter " + matSize + " numbers:");
-			for(int j = 0; j < matSize; j++) {
+			System.out.println("Please enter " + columns + " numbers:");
+			for(int j = 0; j < columns; j++) {
 				mat[i][j] = scanner.nextInt();
 			}
 		}
-		//checks if the matrix is "main folded"
-		boolean isMainFolded = true; 
-		for(int i = 0; i < matSize; i++) {
-			for(int j = 0; j < matSize; j++) {
-				if(mat[i][j] != mat [j][i]) {
-					isMainFolded = false;
-					break;
-				}	
+		//prints the matrix
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < columns; j++) {
+				System.out.print(mat[i][j] + "  ");
 			}
+			System.out.println();
 		}
-		//prints the check's result; 
-		String result; 
-		if(isMainFolded == true)
-			result = ""; 
-		else
-			result = "NOT";
-		System.out.println("the matrix is " + result + " 'main folded'.");
+		//finds max value in the outer frame
+		int max = mat[0][0];
+		//top row
+		for(int i = 0; i < columns-1; i++) {
+			if(mat[0][i] < mat[0][i+1])
+				max = mat[0][i+1];
+		}
+		//bottom row
+		for(int i = 0; i < columns; i++) {
+			if(mat[columns-1][i] > max)
+				max = mat[columns-1][i];
+		}
+		//leftmost column
+		for(int i = 0; i < rows; i++) {
+			if(mat[i][0] > max)
+				max = mat[i][0];
+		}
+		//rightmost column
+		for(int i = 0; i < rows; i++) {
+			if(mat[i][columns-1] > max)
+				max = mat[i][columns-1];
+		}
 		
+		System.out.println("the max value in the outer frame is: " + max);
 	
+				
+	// question 15
+		
+//		int matSize;
+//		// gets input
+//		System.out.println("Please enter the size of the square matrix");
+//		matSize = scanner.nextInt();
+//		int [][] mat = new int[matSize][matSize];
+//		for(int i = 0; i < matSize; i++) {
+//			System.out.println("Row number " + i + " :");
+//			System.out.println("Please enter " + matSize + " numbers:");
+//			for(int j = 0; j < matSize; j++) {
+//				mat[i][j] = scanner.nextInt();
+//			}
+//		}
+//		//checks if the matrix is "main folded"
+//		boolean isMainFolded = true; 
+//		for(int i = 0; i < matSize; i++) {
+//			for(int j = 0; j < matSize; j++) {
+//				if(mat[i][j] != mat [j][i]) {
+//					isMainFolded = false;
+//					break;
+//				}	
+//			}
+//		}
+//		//prints the check's result; 
+//		String result; 
+//		if(isMainFolded == true)
+//			result = ""; 
+//		else
+//			result = "NOT";
+//		System.out.println("the matrix is " + result + " 'main folded'.");
 	}
 
 }
